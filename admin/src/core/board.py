@@ -24,3 +24,4 @@ def list_issues():
         }
     ]
     return issues
+
