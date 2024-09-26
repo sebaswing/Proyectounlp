@@ -5,20 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error!</title>
     {%block head%}
-    <link
+    <!-- Fluid viewport -->
+        <link
         rel="stylesheet"
-        href="{{url_for('static',filename='error.css')}}"
-    />
+        href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.fluid.classless.min.css"
+        >
     {% endblock %}
 </head>
 <body>
-    <div class="error-container">
-        <div class="error-code">{{error.code}}</div>
-        <div class="error-message">{{error.name}}</div>
-        <div class="error-details">{{error.description}}</div>
-        <div class="error-container">
-            <a href="{{url_for('rout')}}" class="more-link">Go to the homepage</a>
-        </div>
-    </div>
+    <main>
+        <article>
+            <header><h1> Error{{ error.code}}</h1></header>
+            {{error.description}}
+            <footer>
+                <a href="{{url_for('home')}}"></a>
+            </footer>
+        </article>
+    </main>
 </body>
 </html>

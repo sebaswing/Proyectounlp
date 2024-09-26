@@ -6,17 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link 
         rel="stylesheet"
-        href="{{ url_for ('static', filename='style.css')}}" 
+        href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.fluid.classless.min.css" 
     />
     <title>{% block title %}{% endblock %}</title>
     {% endblock %}
 </head>
 <body>
-    <div>{% block navbar %} {% endblock %}</div>
-    <div id="container">
+    <header>
+        <nav>
+            <ul style="list-style-type: none;">
+                <li><a href="{{url_for('home')}}"><Strong>LOGO</Strong></a></li>
+            </ul>
+            <ul style="list-style-type: none;">
+                <li><a href="{{url_for('issues.index')}}"><Strong>Consultas</Strong></a></li>
+            </ul>
+        </nav>
+        {% block navbar%} {% endblock %}
+    </header>
+    <main>
         {% block content %}
         {% endblock %}
-    </div>
-    <div> {% block footer %} {% endblock %} </div>
+    </main>
+    <footer>{% block footer %}{% endblock %}</footer>
 </body>
 </html>

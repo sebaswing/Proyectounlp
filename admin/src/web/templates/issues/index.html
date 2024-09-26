@@ -9,7 +9,7 @@
 {% block content %}
 <h1>Consultas</h1>
 
-<table class="styled-table">
+<table > <!--class="styled-table"-->
     <thead>
         <tr>
             <th>#</th>
@@ -31,4 +31,5 @@
         {% endfor %}
     </tbody>
 </table>
+<a href="{{url_for('home')}}"
 {% endblock %}
