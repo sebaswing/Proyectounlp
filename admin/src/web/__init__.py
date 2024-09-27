@@ -4,6 +4,7 @@ from src.web.config import config
 from src.web.controllers.issues import bp as issues_bp
 from src.web.handlers import error
 from src.core import database
+from src.core.seeds import run as run_seeds
 
 def create_app(env="development", static_folder="../../static"):
     app = Flask(__name__,static_folder = static_folder)
@@ -27,5 +28,10 @@ def create_app(env="development", static_folder="../../static"):
     @app.cli.command(name="reset-db")
     def reset_db():
         database.reset()
+
+    @app.cli.command(name="seeds-db")
+    def seeds_deb():
+        run_seeds()
+
     
     return app
