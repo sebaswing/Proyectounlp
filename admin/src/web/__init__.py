@@ -4,7 +4,8 @@ from src.web.config import config
 from src.web.controllers.issues import bp as issues_bp
 from src.web.handlers import error
 from src.core import database
-from src.core.seeds import run as run_seeds
+from src.core.seeds import run as run_seeds # acá lo que hago es renombrarla para que el nombre quede más entedible al leer
+
 
 def create_app(env="development", static_folder="../../static"):
     app = Flask(__name__,static_folder = static_folder)
