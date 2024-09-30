@@ -52,4 +52,36 @@ def run():
     board.assign_user(issue2,user2)
     board.assign_user(issue3,user3)
 
+    # Asignar las etiquetas (labels) sin inserted_at ni updated_at
+
+    print ("Datos labels...")
+    
+    label_1 = board.create_label(
+        title="Bug",
+        description="Issues related to software bugs.",
+        color="#FF0000"
+    )
+
+    label_2 = board.create_label(
+        title="Feature",
+        description="Requests for new features or enhancements.",
+        color="#00FF00"
+    )
+
+    label_3 = board.create_label(
+        title="Documentation",
+        description="Improvements or updates to project documentation.",
+        color="#0000FF"
+    )
+
+    label_4 = board.create_label(
+        title="Priority",
+        description="Indicates the issue has high priority.",
+        color="#FFFF00"
+    )
+
+    board.assign_labels(issue1,[label_1,label_2])
+    board.assign_labels(issue2,[label_3,label_4])
+    board.assign_labels(issue3,[label_1,label_4])
+
     print ("Datos Creados...")
