@@ -1,4 +1,3 @@
-
 from flask import Blueprint
 from flask import render_template
 from flask import request
@@ -19,7 +18,8 @@ def login():
 def authenticate():
     params= request.form
 
-    user = auth.find_user_by_email_and_password(params["email"],params["password"])
+    #user = auth.find_user_by_email_and_password(params["email"],params["password"])
+    user= auth.check_user(params["email"],params["password"])
 
     if not user:
         flash("Usuario o Contraseña incorrecta", "error")
