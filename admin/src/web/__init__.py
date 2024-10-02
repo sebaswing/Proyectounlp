@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import render_template
+from flask_session import Session
 from src.web.config import config
 from src.web.controllers.issues import bp as issues_bp
 from src.web.controllers.auth import bp as auth_bp
@@ -7,6 +8,7 @@ from src.web.handlers import error
 from src.core import database
 from src.core.seeds import run as run_seeds # acá lo que hago es renombrarla para que el nombre quede más entedible al leer
 
+session = Session()
 
 def create_app(env="development", static_folder="../../static"):
     app = Flask(__name__,static_folder = static_folder)
@@ -14,6 +16,8 @@ def create_app(env="development", static_folder="../../static"):
     #print(app.config)
 
     database.init_app(app)
+
+    session.init_app(app)
 
     @app.route("/")
     def home():
