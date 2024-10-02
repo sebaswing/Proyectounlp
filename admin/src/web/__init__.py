@@ -2,6 +2,7 @@ from flask import Flask
 from flask import render_template
 from src.web.config import config
 from src.web.controllers.issues import bp as issues_bp
+from src.web.controllers.auth import bp as auth_bp
 from src.web.handlers import error
 from src.core import database
 from src.core.seeds import run as run_seeds # acá lo que hago es renombrarla para que el nombre quede más entedible al leer
@@ -23,6 +24,7 @@ def create_app(env="development", static_folder="../../static"):
         return render_template("about.html")
 
     app.register_blueprint(issues_bp)
+    app.register_blueprint(auth_bp)
 
     app.register_error_handler(404, error.error_not_found)
 

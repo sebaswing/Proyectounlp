@@ -1,0 +1,52 @@
+/*estilos para las cajas de mensajes flash */
+
+.flash{
+    border: 2px solid #ccc;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.flash.success{
+    border-color: #2d762d;
+    background-color: #DFF0D8;
+    color: #3c763d;
+}
+
+.flash.error{
+    border-color: #d9534f;
+    background-color: #F2DEDE;
+    color: #a94442; 
+}
+
+.flash.warning{
+    border-color: #F0AD4E;
+    background-color: #FCF8E3;
+    color: #8A6D3B; 
+}
+
+.flash.info{
+    border-color: #3178BF;
+    background-color: #D9edf7;
+    color: #31708f; 
+}
+
+.flash.headbar strong{
+    font-weight: bold;
+    text-transform:uppercase;
+}
+
+/* si quieres un efecto de fade-in */
+.flash{
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+    from{
+        opacity: 0;      
+    }
+    to {
+        opacity: 1;
+    }
+}

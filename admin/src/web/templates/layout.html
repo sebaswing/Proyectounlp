@@ -8,12 +8,16 @@
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.fluid.classless.min.css" 
     />
+    <link
+        rel="stylesheet"
+        href=" {{url_for('static',filename='flash.css')}}"
+    />
     <title>{% block title %}{% endblock %}</title>
     {% endblock %}
 </head>
 <body>
     <p>Clase 5 - Autenticación
-        <blockquote>Min 0:00:00</blockquote> </p>
+        <blockquote>Min 0:20:12</blockquote> </p>
     <header>
         <nav>
             <ul style="list-style-type: none;">
@@ -26,6 +30,15 @@
         {% block navbar%} {% endblock %}
     </header>
     <main>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {%if messages%}
+                {% for category, message in messages %}
+                    <p class="flash {{category}} ">{{message}}</p>
+                {% endfor %}
+            {%endif%}
+        {% endwith%}
+
         {% block content %}
         {% endblock %}
     </main>
