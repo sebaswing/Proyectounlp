@@ -32,4 +32,13 @@ def authenticate():
 
 @bp.get("/logout")
 def logout():
-    pass
+    if session.get("user"):
+        del session["user"]
+        session.clear()
+
+        flash("¡la session se cerró correctamente", "info")
+
+    else:
+        flash("no hay una sessión activa", "error")
+
+    return redirect(url_for("auth.login"))

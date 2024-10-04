@@ -17,14 +17,20 @@
 </head>
 <body>
     <p>Clase 5 - Autenticación
-        <blockquote>Min 0:20:12</blockquote> </p>
+        <blockquote>Min 1:18:16</blockquote> </p>
     <header>
         <nav>
-            <ul style="list-style-type: none;">
+            <ul> 
                 <li><a href="{{url_for('home')}}"><Strong>LOGO</Strong></a></li>
-            </ul>
-            <ul style="list-style-type: none;">
+            </ul>    
+            <ul>   
                 <li><a href="{{url_for('issues.index')}}"><Strong>Consultas</Strong></a></li>
+                {% if is_authenticated(session)%}
+                    <li><a href="{{url_for('users.index')}}"><Strong>Usuarios</Strong></a></li>
+                    <li><a href="{{url_for('auth.logout')}}"><Strong>Cerrar Sesión</Strong></a></li>
+                {% else %}
+                    <li><a href="{{url_for('auth.login')}}"><Strong>Iniciar Sesión</Strong></a></li>
+                {% endif %}
             </ul>
         </nav>
         {% block navbar%} {% endblock %}

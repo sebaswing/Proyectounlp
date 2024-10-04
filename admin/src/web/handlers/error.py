@@ -15,4 +15,9 @@ def error_not_found(e):
   #          "message":"Not Found",
    #         "description":"the requested URL was not found on the server"
    #     }
-        return render_template('error.html',error=error), error.code
+        return render_template('error.html',error=error), 404
+
+def unauthorized(e):
+        error=Error(401,"Unauthorized","You are not authoried to acces this page.")
+
+        return render_template('error.html',error=error), 401

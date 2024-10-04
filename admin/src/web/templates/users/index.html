@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{%block title%} Usuarios {%endblock%}
+
+{%block head%}
+    {{super()}}
+{%endblock%}
+
+{% block content %}
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <th>{{user.id}}</th>
+            <th>{{user.email}}</th>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+<a class="secondary" href="{{url_for('home')}}">back</a>
+{% endblock %} 
