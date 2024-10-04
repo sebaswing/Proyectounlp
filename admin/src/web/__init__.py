@@ -12,17 +12,17 @@ session = Session()
 
 def create_app(env="development", static_folder="../../static"):
     app = Flask(__name__,static_folder = static_folder)
+    #load config
     app.config.from_object(config[env])
     #print(app.config)
-
+    #Init database
     database.init_app(app)
-
+    #init session
     session.init_app(app)
-    bcrypt.init_app(app)
-
-
-    routes.register(app)
+    #init bcrypt
+    bcrypt.init_app(app)    
     #---- se procede a retirar esta sección de rutas para llevarlo a routes
+    routes.register(app)
     #------
 
     #register error handlers
@@ -32,7 +32,6 @@ def create_app(env="development", static_folder="../../static"):
 
     #register functions on jinja
     app.jinja_env.globals.update(is_authenticated = is_authenticated)
-
 
     #se remueven los comandos para pasarlos a commands.py 
     commands.register (app)   
