@@ -11,7 +11,7 @@ def index():
 
     #if not is_authenticated(session): se elimina por el decorator login_required
     #    return abort(401)
-    #users=auth.list_users()
+    users=auth.list_users()
 
     #raise Exception ("Error de prueba") levantar una excepcion.
 

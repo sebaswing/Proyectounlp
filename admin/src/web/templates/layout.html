@@ -16,8 +16,8 @@
     {% endblock %}
 </head>
 <body>
-    <p>Clase 5 - Autenticación
-        <blockquote>Min 1:28:56</blockquote> </p>
+    <p>Clase 6
+        <blockquote>Min 0:00:00</blockquote> </p>
     <header>
         <nav>
             <ul> 
@@ -26,7 +26,7 @@
             <ul>   
                 <li><a href="{{url_for('issues.index')}}"><Strong>Consultas</Strong></a></li>
                 {% if is_authenticated(session)%}
-                    <li><a href="{{url_for('users.index')}}"><Strong>Usuarios</Strong></a></li>
+                    <!-- <li><a href="{{url_for('users.index')}}"><Strong>Usuarios</Strong></a></li> se me rompió-->
                     <li><a href="{{url_for('auth.logout')}}"><Strong>Cerrar Sesión</Strong></a></li>
                 {% else %}
                     <li><a href="{{url_for('auth.login')}}"><Strong>Iniciar Sesión</Strong></a></li>

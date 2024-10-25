@@ -1,3 +1,4 @@
+import logging
 from flask import Flask
 from flask_session import Session
 from src.core.bcrypt import bcrypt
@@ -9,6 +10,9 @@ from src.web import commands
 from src.core import database
 
 session = Session()
+
+logging.basicConfig()
+logging.getLogger("sqlalchemy.engine").setLevel(logging.INFO)
 
 def create_app(env="development", static_folder="../../static"):
     app = Flask(__name__,static_folder = static_folder)
@@ -35,4 +39,5 @@ def create_app(env="development", static_folder="../../static"):
 
     #se remueven los comandos para pasarlos a commands.py 
     commands.register (app)   
+    
     return app
