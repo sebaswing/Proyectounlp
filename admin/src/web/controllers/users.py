@@ -2,7 +2,9 @@ from flask import render_template
 from flask import current_app
 from flask import Blueprint
 from src.core import auth  
-from src.web.handlers.auth import login_required
+from src.web.handlers.auth import login_required, check_permissions
+from flask import session,abort
+
 
 bp = Blueprint("users",__name__,url_prefix="/usuarios")
 
@@ -15,8 +17,8 @@ def index():
     users=auth.list_users()
 
     #raise Exception ("Error de prueba") levantar una excepcion.
-    if not users:
-        current_app.logger.warning("La lista de usuarios está vacía o es nula")
+    if not check_permissions(session,"user_index"):
+        return abort(403)
     
     
     return render_template("users/index.html", users=users)

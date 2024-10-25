@@ -17,19 +17,24 @@
 </head>
 <body>
     <p>Clase 6
-        <blockquote>Min 0:00:00</blockquote> </p>
+        <blockquote>Min 0:48:01</blockquote> </p>
     <header>
         <nav>
             <ul> 
                 <li><a href="{{url_for('home')}}"><Strong>LOGO</Strong></a></li>
             </ul>    
             <ul>   
-                <li><a href="{{url_for('issues.index')}}"><Strong>Consultas</Strong></a></li>
+                
                 {% if is_authenticated(session)%}
-                    <li><a href="{{url_for('users.index')}}"><Strong>Usuarios</Strong></a></li> 
-                    <li><a href="{{url_for('auth.logout')}}"><Strong>Cerrar Sesión</Strong></a></li>
-                {% else %}
-                    <li><a href="{{url_for('auth.login')}}"><Strong>Iniciar Sesión</Strong></a></li>
+                    {% if check_permissions(session,"issue_index")%}
+                        <li><a href="{{url_for('issues.index')}}"><Strong>Consultas</Strong></a></li>
+                    {% endif %}
+                    {% if check_permissions(session,"user_index")%}
+                        <li><a href="{{url_for('users.index')}}"><Strong>Usuarios</Strong></a></li> 
+                    {% endif %}
+                        <li><a href="{{url_for('auth.logout')}}"><Strong>Cerrar Sesión</Strong></a></li>
+                    {% else %}
+                        <li><a href="{{url_for('auth.login')}}"><Strong>Iniciar Sesión</Strong></a></li>
                 {% endif %}
             </ul>
         </nav>

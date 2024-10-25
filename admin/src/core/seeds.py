@@ -6,23 +6,28 @@ def run():
     print ("Creando usuarios...")
 
     user1 = auth.create_user(
-    password="password123",
-    email="user1@example.com"
+        password="password123",
+        email="user1@example.com",
+        role="admin"
     )
 
     user2 = auth.create_user(
         password="securePass456",
-        email="user2@example.com"
+        email="user2@example.com",
+        role="standard"
+
     )
 
     user3 = auth.create_user(
         password="pass789",
-        email="user3@example.com"
+        email="user3@example.com",
+        role="standard"
     )
 
     user4 = auth.create_user(
         password="superSecret!321",
-        email="user4@example.com"
+        email="user4@example.com",
+        role="admin"
     )
 
     print ("Creando issues...")

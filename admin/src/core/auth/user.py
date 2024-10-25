@@ -7,6 +7,7 @@ class User(db.Model):
     password= db.Column(db.String(255),nullable=False)
     email = db.Column(db.String(255),nullable=False)
     issues = db.relationship("Issue", back_populates="user")
+    role = db.Column(db.String(255),nullable=False,default="standard")
     inserted_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate = datetime.now)
 
