@@ -4,7 +4,6 @@ from src.core.auth.user import User
 
 def list_users():
     issues = User.query.all()
-
     return issues
 
 def create_user(**kwargs):

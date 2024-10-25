@@ -1,4 +1,5 @@
 from flask import render_template
+from flask import current_app
 from flask import Blueprint
 from src.core import auth  
 from src.web.handlers.auth import login_required
@@ -14,6 +15,9 @@ def index():
     users=auth.list_users()
 
     #raise Exception ("Error de prueba") levantar una excepcion.
-
+    if not users:
+        current_app.logger.warning("La lista de usuarios está vacía o es nula")
+    
+    
     return render_template("users/index.html", users=users)
 
