@@ -21,3 +21,8 @@ def unauthorized(e):
         error=Error(401,"Unauthorized","You are not authoried to acces this page.")
 
         return render_template('error.html',error=error), 401
+
+def Forbidden(e):
+        error=Error(403,"Forbidden","You are not Allowed to acces this page.")
+
+        return render_template('error.html',error=error), 403
