@@ -9,7 +9,11 @@ from src.web.handlers.auth import  check_permissions
 from src.web.handlers import error
 from src.web import commands
 from src.core import database
+from src.web.storage import storage
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 session = Session()
 
 logging.basicConfig()
@@ -29,6 +33,8 @@ def create_app(env="development", static_folder="../../static"):
     #---- se procede a retirar esta sección de rutas para llevarlo a routes
     routes.register(app)
     #------
+    #registra el obeto stortage
+    storage.init_app(app)
 
     #register error handlers
     app.register_error_handler(404, error.error_not_found)
