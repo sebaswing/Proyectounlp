@@ -10,15 +10,19 @@
 <table>
     <thead>
         <tr>
-            <th>#</th>
+            <th>avatar</th>
             <th>Email</th>
+            <th>Role</th>
         </tr>
     </thead>
     <tbody>
         {% for user in users %}
         <tr>
-            <th>{{user.id}}</th>
+            <th>
+                <img src={{avatar_url(user.avatar)}} alt="Avatar" width="30" height="30">
+            </th>
             <th>{{user.email}}</th>
+            <th>{{user.role}}</th>
         </tr>
         {%endfor%}
     </tbody>

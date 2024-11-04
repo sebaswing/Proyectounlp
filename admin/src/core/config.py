@@ -21,6 +21,7 @@ class DevelopmentConfig(Config):
     MINIO_ACCESS_KEY= environ.get("MINIO_ACCESS_KEY")
     MINIO_SECRET_KEY= environ.get("MINIO_SECRET_KEY") 
     MINIO_SECURE   = False
+    
     #database
     DB_USER=environ.get("DB_USER")
     DB_PASSWORD= environ.get("DB_PASSWORD")

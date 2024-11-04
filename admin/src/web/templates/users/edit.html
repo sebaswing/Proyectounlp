@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{%block title%} Editar Usuario {%endblock%}
+
+{%block head%}
+    {{super()}}
+{%endblock%}
+
+{% block content %}
+
+<article class="form-container">
+
+    <header>
+        <h1>Editar Usuario</h1>
+    </header>
+
+    <form method="POST" action="{{ url_for('users.update',id=user.id) }}" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Role</legend>
+            <label>
+                <input type="radio" name="role" id="admin" value="admin" {% if user.role == "admin" %}checked{% endif %}>
+                Admin
+            </label>
+            <label>
+                <input type="radio" name="role" id="standard" value="standard" {% if user.role == "standard" %} checked {% endif %}>
+                Standard
+            </label>
+            <label>
+                Avatar
+                <input type="file" name="avatar" >
+                <small>Seleccione una Imagen para el avatar</small>
+            </label>
+            <input type="submit" value="Guardar">
+        </fieldset>
+    </form>
+</article>
+
+<a class="secondary" href="{{url_for('home')}}">back</a>
+{%endblock%}
+        
+
+
+

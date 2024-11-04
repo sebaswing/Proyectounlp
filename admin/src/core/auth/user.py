@@ -8,6 +8,7 @@ class User(db.Model):
     email = db.Column(db.String(255),nullable=False)
     issues = db.relationship("Issue", back_populates="user")
     role = db.Column(db.String(255),nullable=False,default="standard")
+    avatar = db.Column(db.String(255),nullable=True)
     inserted_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate = datetime.now)
 

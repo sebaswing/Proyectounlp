@@ -3,7 +3,7 @@ from flask import Flask
 from flask_session import Session
 from src.core.bcrypt import bcrypt
 from src.core.config import config
-from src.web import routes
+from src.web import routes,helpers
 from src.web.handlers.auth import  is_authenticated
 from src.web.handlers.auth import  check_permissions
 from src.web.handlers import error
@@ -16,8 +16,8 @@ import os
 load_dotenv()
 session = Session()
 
-logging.basicConfig()
-logging.getLogger("sqlalchemy.engine").setLevel(logging.INFO)
+# logging.basicConfig()
+# logging.getLogger("sqlalchemy.engine").setLevel(logging.INFO)
 
 def create_app(env="development", static_folder="../../static"):
     app = Flask(__name__,static_folder = static_folder)
@@ -33,7 +33,7 @@ def create_app(env="development", static_folder="../../static"):
     #---- se procede a retirar esta sección de rutas para llevarlo a routes
     routes.register(app)
     #------
-    #registra el obeto stortage
+    #registra el obeto stortage de minIO
     storage.init_app(app)
 
     #register error handlers
@@ -44,7 +44,7 @@ def create_app(env="development", static_folder="../../static"):
     #register functions on jinja
     app.jinja_env.globals.update(is_authenticated = is_authenticated)
     app.jinja_env.globals.update(check_permissions = check_permissions)
-
+    app.jinja_env.globals.update(avatar_url = helpers.avatar_url)
     #se remueven los comandos para pasarlos a commands.py 
     commands.register (app)   
     

@@ -60,3 +60,16 @@ def check_user(email,password):
         return user
 
     return None
+
+def update_user(user_id, **kwargs):
+    user = User.query.get(user_id)
+    for key, value in kwargs.items():
+        setattr(user, key, value)
+    
+    db.session.add(user)
+    db.session.commit()
+    return user
+
+def get_user(user_id):
+    user = User.query.get(user_id)
+    return user

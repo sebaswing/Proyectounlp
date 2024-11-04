@@ -1,4 +1,5 @@
-from flask import render_template
+from os import fstat
+from flask import flash, redirect, render_template, request, url_for
 from flask import current_app
 from flask import Blueprint
 from src.core import auth  
@@ -24,3 +25,35 @@ def index():
     
     return render_template("users/index.html", users=users)
 
+@bp.get("/<int:id>/edit")
+def edit(id):
+    user = auth.get_user(id)
+
+    return render_template("users/edit.html", user=user)
+        
+
+@bp.post("/<int:id>/update")
+def update(id):
+    params= request.form.copy()
+
+    if "avatar" in request.files:
+        file = request.files["avatar"]
+        client = current_app.storage.client
+        size = fstat(file.fileno()).st_size
+        # ulid= u.new() -> para generar una clave unica y sumarselo al filename, asi no se pisa el archivo anterior
+
+        client.put_object(
+            "grupo00",
+            file.filename,  
+            file,
+            size,
+            content_type=file.content_type
+        )
+
+        params["avatar"]=file.filename
+        # print(avatar)
+
+    auth.update_user(id,**params)
+    flash("Usuario actualizado correctamente","success")
+
+    return redirect(url_for("users.index"))
