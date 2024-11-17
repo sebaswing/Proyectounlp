@@ -2,6 +2,7 @@ from flask import Blueprint, Response, request
 from src.core import board  
 from src.web.schemas.issues import issues_schema
 from src.web.schemas.issues import create_issue_schema
+from src.web.schemas.issues import issue_schema
 from flask import jsonify
 
 bp = Blueprint("issues_api",__name__,url_prefix="/api/consultas")
@@ -10,7 +11,7 @@ bp = Blueprint("issues_api",__name__,url_prefix="/api/consultas")
 def index():
 
     issues=board.list_issues()
-    data=issues_schema.dumps(issues)
+    data=issues_schema.dump(issues)
     # print(data)
 
     # data=[]
@@ -36,13 +37,16 @@ def index():
 
 @bp.post("/")
 def create():
-    data=request.get_json()
-    errors=create_issue_schema.validate(data)
+    atrributes=request.get_json()
+    errors=create_issue_schema.validate(atrributes)
     # new_issue=create_issue_schema.load(data)
     if errors:
         # return make_response(errors,400) cambio por el profesor
         return jsonify(errors),400
     else:
+        kwars = create_issue_schema.load(atrributes)
+        new_issue = board.create_issue(**kwars)
+        data = issue_schema.dump(new_issue)
         return jsonify(data),201
         # return { },201
     

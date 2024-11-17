@@ -1,4 +1,5 @@
 from marshmallow import Schema, fields
+from web.schemas.user import User_schema
 
 class Issue_schema(Schema):
     id = fields.Int(dump_only=True)
@@ -7,6 +8,7 @@ class Issue_schema(Schema):
     description = fields.Str(required=True)
     status = fields.Str()
     user_id = fields.Int(required=True)
+    user=fields.Nested(User_schema,only=("id","email"),dump_only=True)
     inserted_at = fields.DateTime(dump_only=True)
     updated_at = fields.DateTime(dump_only=True)
 
