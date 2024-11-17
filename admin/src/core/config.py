@@ -1,4 +1,5 @@
 from os import environ
+import psycopg2
 class Config(object):
     """base config."""
 
@@ -31,6 +32,13 @@ class DevelopmentConfig(Config):
     SQLALCHEMY_DATABASE_URI = (
         f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
     )
+
+    try:
+        # Conectar a la base de datos
+        connection = psycopg2.connect(SQLALCHEMY_DATABASE_URI)
+        print("Conexión exitosa a la base de datos")
+    except psycopg2.OperationalError as e:
+        print(f"Error de conexión: {e}")
     print(SQLALCHEMY_DATABASE_URI)
 
 

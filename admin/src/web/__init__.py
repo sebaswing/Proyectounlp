@@ -11,6 +11,7 @@ from src.web import commands
 from src.core import database
 from src.web.storage import storage
 from dotenv import load_dotenv
+from flask_cors import CORS
 import os
 
 load_dotenv()
@@ -35,6 +36,9 @@ def create_app(env="development", static_folder="../../static"):
     #------
     #registra el obeto stortage de minIO
     storage.init_app(app)
+
+    #register CORS
+    CORS(app)
 
     #register error handlers
     app.register_error_handler(404, error.error_not_found)
