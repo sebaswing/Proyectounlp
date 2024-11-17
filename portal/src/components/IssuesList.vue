@@ -17,7 +17,7 @@
                     <td>{{ issue.id }}</td>
                     <td>{{ issue.title }}</td>
                     <td>{{ issue.description }}</td>
-                    <td>{{ issue.user.name }}</td>
+                    <td>{{ issue.user.email }}</td>
                 </tr>
             </tbody>
         </table>
